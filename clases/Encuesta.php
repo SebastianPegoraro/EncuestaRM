@@ -38,6 +38,15 @@ class Encuesta{
 
 	public function setFechaCierre($fechaCierre){
 		$this->fechaCierre = $fechaCierre;
+	}
+	
+	//busca todos los Tramites existentes
+    public function showEncuestas(){
+        $conexion = new Connect();
+        $consulta = $conexion->prepare('SELECT * FROM '.self::TABLA.' WHERE id GROUP BY id DESC');
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        return $registros;
     }
     
 

@@ -18,14 +18,20 @@ include 'nav.php';
                     <div class="card cuadro">
                         <div class="card-body">
                             <div class="form-group col-sm-12">
-                                <h4>Pregunta</h4>
+                                <h4>Cantidad de Preguntas</h4>
                             </div>
                             <div class="row pregunta">
                                 <div class="form-group col-sm-12">
-                                    <input type='text' class='form-control' name='pregunta[]' placeholder='Ingrese el Titulo de la Encuesta' required>
+                                    <input type='text' class='form-control' name='preguntas' placeholder='Ingrese la cantidad de preguntas que va a contener la encuesta' required>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <br>
+                    <div class='row'>
+                        <div class='col-12 text-center'>
+                            <input type='submit' value='Imprimir' name='guardar' class='btn btn-outline-primary boton'>
+                        </div>            
                     </div>
                 </form>
             </div>

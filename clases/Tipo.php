@@ -43,7 +43,7 @@ class Tipo{
 		$conexion = null;
 	}
 
-	public function showTipo(){
+	public function showTipos(){
         $conexion = new Connect();
         $consulta = $conexion->prepare('SELECT * FROM '.self::TABLA.' GROUP BY id DESC');
         $consulta->execute();

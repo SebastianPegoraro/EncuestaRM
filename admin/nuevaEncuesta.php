@@ -16,7 +16,7 @@ include 'nav.php';
                             <h1>Nueva Encuesta!</h1>
                         </div>
                     </div>
-                    <div class="card cuadro">
+                    <div class="card">
                         <div class="card-body">
                             <div class="form-group col-sm-12">
                                 <h4>Título</h4>

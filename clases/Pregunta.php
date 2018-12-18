@@ -1,4 +1,5 @@
 <?php
+require_once 'Connect.php';
 
 class Pregunta{
     private $id;
@@ -55,11 +56,25 @@ class Pregunta{
 	}
 
 	public function cantPreguntasPorEncuesta($encuesta){
+		$total = 0;
 		$conexion = new Connect();
 		$consulta = $conexion->prepare('SELECT COUNT(*) FROM '.self::TABLA.' WHERE encuesta_id = :encuesta');
 		$consulta->bindParam(':encuesta', $encuesta);
 		$consulta->execute();
-		$total = $consulta->fetchAll();
-        return $total;
+		$total = $consulta->fetch();
+		return $total;
+	}
+
+	public function preguntasPorEncuesta($encuesta){
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT id, descripcion FROM '.self::TABLA.' WHERE encuesta_id = :encuesta');
+		$consulta->bindParam(':encuesta', $encuesta);
+		$consulta->execute();
+		$registro = $consulta->fetch();
+        if ($registro) {
+            return new self($registro['descripcion'], $encuesta, $registro['id']);
+        } else {
+            return false;
+        }
 	}
 }

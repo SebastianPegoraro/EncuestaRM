@@ -49,5 +49,27 @@ class Tipo{
         $consulta->execute();
         $registros = $consulta->fetchAll();
         return $registros;
-    }
+	}
+	
+	public function buscarId($clase){
+        $conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT id FROM '.self::TABLA.' WHERE clase = :clase');
+		$consulta->bindParam(':clase', $clase);
+        $consulta->execute();
+        $registros = $consulta->fetchAll();
+        return $registros;
+	}
+	
+	public function buscarPorId($id){
+        $conexion = new Connect();
+        $consulta = $conexion->prepare('SELECT clase FROM '.self::TABLA.' WHERE id = :id');
+		$consulta->bindParam(':id', $id);
+        $consulta->execute();
+        $registro = $consulta->fetch();
+        if ($registro) {
+            return new self($registro['clase'], $id);
+        } else {
+            return false;
+        }
+	}
 }

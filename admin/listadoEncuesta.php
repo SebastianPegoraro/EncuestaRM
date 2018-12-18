@@ -5,7 +5,6 @@ include 'nav.php';
 $totalEncuestas = Encuesta::showEncuestas();
 ?>
 
-<section>
     <div class="container page-content-wrapper">
         <div class="row">
             <?php if($totalEncuestas){ ?> <!-- Si hay al menos una encuesta, la lista. Sino muestra una alerta -->
@@ -47,4 +46,3 @@ $totalEncuestas = Encuesta::showEncuestas();
             <?php } ?>
         </div>
     </div>
-</section>

@@ -1,4 +1,5 @@
 <?php
+require_once 'Connect.php';
 
 class Opcion{
     private $id;
@@ -10,10 +11,6 @@ class Opcion{
     
     public function getId(){
 		return $this->id;
-	}
-
-	public function setId($id){
-		$this->id = $id;
 	}
 
 	public function getEleccion(){
@@ -46,7 +43,49 @@ class Opcion{
 
 	public function setPregunta($pregunta){
 		$this->pregunta = $pregunta;
-    }
-    
+	}
+	
+	public function __construct($eleccion, $tipo, $pregunta, $estado=null, $id=null){
+		$this->eleccion = $eleccion;
+		$this->tipo = $tipo;
+		$this->pregunta = $pregunta;
+		$this->estado = $estado;
+		$this->id = $id;
+	}
+
+	public function guardarEleccion(){
+		$conexion = new Connect();
+		if($this->id){
+			$consulta = $conexion->prepare('UPDATE '.self::TABLA.' SET eleccion_id = :eleccion, tipo_id = :tipo, pregunta_id = :pregunta, estado = :estado WHERE id = :id');
+			$consulta->bindParam(':eleccion_id', $this->eleccion);
+			$consulta->bindParam(':tipo_id', $this->tipo);
+			$consulta->bindParam(':pregunta_id', $this->pregunta);
+			$consulta->bindParam(':estado', $this->estado);
+			$consulta->bindParam(':id', $this->id);
+			$consulta->execute();
+		} else {
+			$consulta = $conexion->prepare('INSERT INTO '.self::TABLA.' (eleccion_id, tipo_id, pregunta_id, estado) VALUES (:eleccion, :tipo, :pregunta, :estado)');
+			$consulta->bindParam(':eleccion_id', $this->eleccion);
+			$consulta->bindParam(':tipo_id', $this->tipo);
+			$consulta->bindParam(':pregunta_id', $this->pregunta);
+			$consulta->bindParam(':estado', $this->estado);
+			$consulta->execute();
+			$this->id = $conexion->lastInsertId();
+		}
+		$conexion = null;
+	}
+	
+	public function opcionesPorPregunta($pregunta){
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :pregunta');
+		$consulta->bindParam(':pregunta', $pregunta);
+		$consulta->execute();
+		$registro = $consulta->fetch();
+        if ($registro) {
+            return new self($registro['eleccion_id'], $registro['tipo_id'], $pregunta, $registro['estado'], $registro['id']);
+        } else {
+            return false;
+        }
+	}
     
 }

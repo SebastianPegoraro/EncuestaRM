@@ -3,5 +3,5 @@ $(document).ready(function(){
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
-    document.getElementById("fechaActual").value = d + "/" + m + "/" + y;
+    document.getElementById("creacion").value = d + "/" + m + "/" + y;
 })

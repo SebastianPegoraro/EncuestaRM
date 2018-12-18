@@ -12,20 +12,20 @@ if ($encuesta) {
     <br>
     <div class="row">
         <div class="col">
-            <form action="cargaPreguntas.php" method="post">
+            <form action="guardaPregunta.php" method="post">
                 <div class="row">
                     <div class='form-group col-sm-12 text-center'>
-                        <h1> Pregunta N° <?php echo $total ?></h1>
+                        <h1> Pregunta N° <?php echo $total[0]+1 ?></h1>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" id="pregunta">
                     <div class="card-body">
                         <div class="form-group col-sm-12">
                             <h4>Descripción</h4>
                         </div>
                         <div class="row">
                             <div class="form-group col-sm-12">
-                                <input type='text' class='form-control' name='descripcion' placeholder='Escriba TODO lo que se va a mostrar como pregunta' required>
+                                <textarea class='form-control' placeholder='Escriba TODO lo que se va a mostrar como pregunta' name='descripcion' rows='2' required></textarea>
                             </div>
                             <!-- Empieza bloque de opciones -->
                             <div class='container'>
@@ -42,33 +42,31 @@ if ($encuesta) {
                                         <input type='text' class='form-control' name='eleccion[]' placeholder='Ingrese una descripción de la opción' required>
                                     </div>                                         
                                 </div>
-                                <br>
                             </div>
                             <!-- Termina bloque de opciones -->
-                            <div class='col-12 text-right'>
-                                <input type='button' value='Agregar otra Opcion' class='btn btn-outline-success' onclick='add_row_opcion()'>
-                            </div>
                         </div>
                     </div>
-                </div>                
+                </div>
+                <br>
+                <div class='row'>
+                    <div class='col-12 text-left'>
+                        <input type="text" value="<?php echo $encuesta ?>" name="encuesta" hidden>
+                        <input type='submit' value='Guardar Pregunta' name='guardar' class='btn btn-outline-primary'>
+                    </div>
+                </div>
             </form>
+        </div>
+        
+        <div class='col-12 text-right'>
+            <input type='button' value='Agregar otra Opcion' class='btn btn-outline-success' onclick='add_row_opcion()'>
         </div>
     </div>
 </div>
+
+<script src="../js/agregaOpcion.js"></script>
 
 <?php
 } else {
     
 }
 ?>
-
-<div class="page-content-wrapper container">
-    <br>
-    <div class="row">
-        <div class="col">
-            <form action="cargaPreguntas.php" method="post">
-                
-            </form>
-        </div>
-    </div>
-</div>

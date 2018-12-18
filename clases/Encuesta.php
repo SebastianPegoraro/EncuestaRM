@@ -84,4 +84,17 @@ class Encuesta{
 		$conexion = null;
 	}
 
+	public function buscarPorId($id){
+        $conexion = new Connect();
+        $consulta = $conexion->prepare('SELECT titulo, fecha_inicio, fecha_cierre, fecha_creacion FROM '.self::TABLA.' WHERE id = :id');
+		$consulta->bindParam(':id', $id);
+        $consulta->execute();
+        $registro = $consulta->fetch();
+        if ($registro) {
+            return new self($registro['titulo'], $registro['fecha_inicio'], $registro['fecha_cierre'], $registro['fecha_creacion'], $id);
+        } else {
+            return false;
+        }
+	}
+
 }

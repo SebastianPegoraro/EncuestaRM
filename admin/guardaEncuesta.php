@@ -11,6 +11,6 @@ if(isset($_POST['guardar'])){
     $encuesta->guardarEncuesta();
     $encuestaId = $encuesta->getId();
 
-    header('Location: ../generadorPreguntas.php?encuesta='.$encuestaId);
+    header('Location: ./generadorPreguntas.php?encuesta='.$encuestaId);
 }
 ?>

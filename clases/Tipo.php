@@ -56,7 +56,7 @@ class Tipo{
 		$consulta = $conexion->prepare('SELECT id FROM '.self::TABLA.' WHERE clase = :clase');
 		$consulta->bindParam(':clase', $clase);
         $consulta->execute();
-        $registros = $consulta->fetchAll();
+        $registros = $consulta->fetch();
         return $registros;
 	}
 	

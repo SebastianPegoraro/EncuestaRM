@@ -10,6 +10,7 @@ require_once '../clases/Eleccion.php';
 $idEncuesta = $_REQUEST['encuesta'];
 $encuesta = Encuesta::buscarPorId($idEncuesta);
 $listaPreguntas = Pregunta::preguntasPorEncuesta($idEncuesta);
+$cont = 0;
 ?>
 
 <div class="container page-content-wrapper">
@@ -17,9 +18,9 @@ $listaPreguntas = Pregunta::preguntasPorEncuesta($idEncuesta);
         <div class="col">
             <div class="card">
 
-                <div class="card-head">
+                <div class="card-header">
                     <div class="col text-center">
-                        <h4><?php echo $encuesta['titulo'] ?></h4>
+                        <h4><?php echo $encuesta->getTitulo() ?></h4>
                     </div>
                 </div>
 
@@ -27,23 +28,23 @@ $listaPreguntas = Pregunta::preguntasPorEncuesta($idEncuesta);
                     <div class="row">
 
                     <?php foreach ($listaPreguntas as $pregunta) { 
-                        $listaOpciones = Opcion::opcionesPorPregunta($pregunta['id']);
+                        $cont++;
+                        $listaOpciones = Opcion::opcionesPorPregunta($pregunta['id']);                        
                         ?>
                         <div class="form-group col">
-                            <label><strong>1)- <?php echo $pregunta['titulo'] ?></strong></label>
+                            <label><strong><?php echo $cont ?>)- <?php echo $pregunta['descripcion'] ?></strong></label>
                         </div>
                         <div class="container">
                             <div class="row">
 
                             <?php foreach ($listaOpciones as $opcion) { 
-                                $clase = Opcion::buscarPorId($opcion['tipo_id']);
+                                $tipo = Tipo::buscarPorId($opcion['tipo_id']);
+                                $eleccion = Eleccion::buscarPorId($opcion['eleccion_id']);
+                                //die(var_dump($tipo->getClase(), $eleccion->getDescripcion()));
                                 ?> 
-                                <div class="form-group col">
-                                    <input class='form-check-input' type='<?php echo $clase ?>' name='opcion' value='habilitar'>
-                                    <label><?php echo $opcion[0] ?></label>
-                                </div>
-                                <div class="form-group col-9">
-                                    <label><?php echo $listaPreguntas[0] ?></label>
+                                <div class="form-group col text-center">
+                                    <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion' value='habilitar'>
+                                    <label><?php echo $eleccion->getDescripcion() ?></label>
                                 </div>
                                 <?php
                             } ?>
@@ -55,6 +56,18 @@ $listaPreguntas = Pregunta::preguntasPorEncuesta($idEncuesta);
 
                     </div>
                 </div>
+                
+                <?php if(isset($_REQUEST['admin'])){
+                    ?>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col">
+                                <a href="generadorPreguntas.php?encuesta=<?php echo $idEncuesta ?>" class="btn btn-outline-primary">Agregar otra Pregunta</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+                } ?>                
 
             </div>
         </div>

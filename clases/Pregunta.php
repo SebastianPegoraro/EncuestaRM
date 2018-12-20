@@ -70,11 +70,7 @@ class Pregunta{
 		$consulta = $conexion->prepare('SELECT id, descripcion FROM '.self::TABLA.' WHERE encuesta_id = :encuesta');
 		$consulta->bindParam(':encuesta', $encuesta);
 		$consulta->execute();
-		$registro = $consulta->fetch();
-        if ($registro) {
-            return new self($registro['descripcion'], $encuesta, $registro['id']);
-        } else {
-            return false;
-        }
+		$registro = $consulta->fetchAll();
+        return $registro;
 	}
 }

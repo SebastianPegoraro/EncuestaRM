@@ -12,8 +12,7 @@ if (isset($_POST['guardar'])) {
     //Guardamos la Pregunta y obtenemos su ID
     $pregunta = new Pregunta($descripcion, $encuestaId);
     $pregunta->guardarPregunta();
-    $preguntaId = $pregunta->getId();
-
+    $preguntaId = $pregunta->getId();    
 
     for ($i=0; $i < count($clase); $i++) {
         //Se busca el id del tipo de campo seleccionado
@@ -23,9 +22,9 @@ if (isset($_POST['guardar'])) {
         $eleccion->guardarEleccion();
         $eleccionId = $eleccion->getId();
         //Se guarda la opcion
-        $opcion = new Opcion($eleccionId, $tipoId, $preguntaId);
-        $opcion->guardarEleccion();        
+        $opcion = new Opcion($eleccionId, $tipoId['id'], $preguntaId);
+        $opcion->guardarOpcion();
     }
     
-    header('Location: ./verEncuesta.php?encuesta='.$encuestaId);
+    header('Location: ./verEncuesta.php?admin&encuesta='.$encuestaId);
 }

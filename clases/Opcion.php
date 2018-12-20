@@ -53,21 +53,21 @@ class Opcion{
 		$this->id = $id;
 	}
 
-	public function guardarEleccion(){
+	public function guardarOpcion(){
 		$conexion = new Connect();
 		if($this->id){
 			$consulta = $conexion->prepare('UPDATE '.self::TABLA.' SET eleccion_id = :eleccion, tipo_id = :tipo, pregunta_id = :pregunta, estado = :estado WHERE id = :id');
-			$consulta->bindParam(':eleccion_id', $this->eleccion);
-			$consulta->bindParam(':tipo_id', $this->tipo);
-			$consulta->bindParam(':pregunta_id', $this->pregunta);
+			$consulta->bindParam(':eleccion', $this->eleccion);
+			$consulta->bindParam(':tipo', $this->tipo);
+			$consulta->bindParam(':pregunta', $this->pregunta);
 			$consulta->bindParam(':estado', $this->estado);
 			$consulta->bindParam(':id', $this->id);
 			$consulta->execute();
 		} else {
 			$consulta = $conexion->prepare('INSERT INTO '.self::TABLA.' (eleccion_id, tipo_id, pregunta_id, estado) VALUES (:eleccion, :tipo, :pregunta, :estado)');
-			$consulta->bindParam(':eleccion_id', $this->eleccion);
-			$consulta->bindParam(':tipo_id', $this->tipo);
-			$consulta->bindParam(':pregunta_id', $this->pregunta);
+			$consulta->bindParam(':eleccion', $this->eleccion);
+			$consulta->bindParam(':tipo', $this->tipo);
+			$consulta->bindParam(':pregunta', $this->pregunta);
 			$consulta->bindParam(':estado', $this->estado);
 			$consulta->execute();
 			$this->id = $conexion->lastInsertId();
@@ -80,12 +80,8 @@ class Opcion{
 		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :pregunta');
 		$consulta->bindParam(':pregunta', $pregunta);
 		$consulta->execute();
-		$registro = $consulta->fetch();
-        if ($registro) {
-            return new self($registro['eleccion_id'], $registro['tipo_id'], $pregunta, $registro['estado'], $registro['id']);
-        } else {
-            return false;
-        }
+		$registro = $consulta->fetchAll();
+        return $registro;
 	}
     
 }

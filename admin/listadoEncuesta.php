@@ -40,9 +40,17 @@ $totalEncuestas = Encuesta::showEncuestas();
             </div>
             
             <?php } else { ?>
-                <div class="alert alert-warning" role="alert">
-                    No se Encontró ninguna Encuesta! :(
-                </div>
+                <div class="col text-center">
+                    <div class="alert alert-warning" role="alert">
+                        No se Encontró ninguna Encuesta! :(
+                    </div>
+                </div>                
             <?php } ?>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col text-center">
+                <a href="nuevaEncuesta.php" class="btn btn-outline-primary">Crear Nueva Encuesta</a>
+            </div>
         </div>
     </div>

@@ -53,7 +53,7 @@ class Encuesta{
 		$this->id = $id;
 	}
 	
-	//busca todos los Tramites existentes
+	//busca todas las Encuestas existentes
     public function showEncuestas(){
         $conexion = new Connect();
         $consulta = $conexion->prepare('SELECT * FROM '.self::TABLA.' WHERE id GROUP BY id DESC');

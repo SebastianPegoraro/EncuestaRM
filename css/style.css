@@ -1,0 +1,9 @@
+.masterHead {
+    background: linear-gradient(-90deg, #003F58, #0089CB);
+}
+
+.titleHead {
+    color: #fff;
+    /*font-size: 13px;*/
+    margin: 12px;
+}

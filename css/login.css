@@ -1,0 +1,52 @@
+/*body#LoginForm{ 
+  background-image:url("../images/marcaciudad.jpg"); 
+  background-repeat:no-repeat; 
+  background-position:center; 
+  background-size:cover; 
+  padding:10px;
+}
+*/
+
+.login{
+  margin-top:5%;
+}
+#formLogin{
+  display: block;
+  text-align: center;
+  margin-top: 10%;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-bottom: 10%;
+}
+
+.form-group {
+  display: block;
+  text-align: left;
+}
+.login{
+  display: block;
+  margin-top: 10%;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 20%;
+}
+@media only screen and (orientation: landscape) {
+  .login{
+    font-size: 2vw;
+    margin: auto;
+    margin-top: 1rem;  
+  }
+  .login label{
+    display: none;
+  }
+  .login input{
+    width:15rem;
+  }
+  #formLogin{
+    margin-top: 10%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10%;
+  }
+}
+

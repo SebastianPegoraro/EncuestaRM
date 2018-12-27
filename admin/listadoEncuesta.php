@@ -17,6 +17,7 @@ $totalEncuestas = Encuesta::showEncuestas();
                                     <th> Titulo </th>
                                     <th> Fecha Inicio </th>
                                     <th> Fecha Cierre </th>
+                                    <th> Fecha Creación </th>
                                     <th> Ver </th>
                                 </tr>
                             </thead>
@@ -28,6 +29,7 @@ $totalEncuestas = Encuesta::showEncuestas();
                                         <td><?php echo $contenido['titulo'] ?></td>
                                         <td><?php echo $contenido['fecha_inicio'] ?></td>
                                         <td><?php echo $contenido['fecha_cierre'] ?></td>
+                                        <td><?php echo $contenido['fecha_creacion'] ?></td>
                                         <td><a href="verEncuesta.php?encuesta=<?php echo $contenido['id'] ?>" class="btn btn-outline-primary"><i class="far fa-eye"></i></a></td>
                                     </tr>
                                 </tbody>

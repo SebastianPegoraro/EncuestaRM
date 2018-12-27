@@ -40,13 +40,27 @@ $cont = 0;
                             <?php foreach ($listaOpciones as $opcion) { 
                                 $tipo = Tipo::buscarPorId($opcion['tipo_id']);
                                 $eleccion = Eleccion::buscarPorId($opcion['eleccion_id']);
-                                //die(var_dump($tipo->getClase(), $eleccion->getDescripcion()));
-                                ?> 
-                                <div class="form-group col text-center">
-                                    <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion' value='habilitar'>
-                                    <label><?php echo $eleccion->getDescripcion() ?></label>
-                                </div>
-                                <?php
+                                if ($tipo->getClase() == 'radio') {
+                                    ?> 
+                                    <div class="form-group col text-center">
+                                        <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
+                                        <label><?php echo $eleccion->getDescripcion() ?></label>
+                                    </div>
+                                    <?php
+                                } elseif ($tipo->getClase() == 'checkbox') {
+                                    ?> 
+                                    <div class="form-group col text-center">
+                                        <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
+                                        <label><?php echo $eleccion->getDescripcion() ?></label>
+                                    </div>
+                                    <?php
+                                } elseif ($tipo->getClase() == 'text') {
+                                    ?> 
+                                    <div class="form-group col text-center">
+                                        <input class='form-control' type='<?php echo $tipo->getClase() ?>' name='opcion' placeholder="<?php echo $eleccion->getDescripcion() ?>">
+                                    </div>
+                                    <?php
+                                }
                             } ?>
                                 
                             </div>
@@ -63,6 +77,9 @@ $cont = 0;
                         <div class="row">
                             <div class="col">
                                 <a href="generadorPreguntas.php?encuesta=<?php echo $idEncuesta ?>" class="btn btn-outline-primary">Agregar otra Pregunta</a>
+                            </div>
+                            <div class="col text-right">
+                                <a href="listadoEncuesta.php" class="btn btn-outline-success">Terminar Encuesta</a>
                             </div>
                         </div>
                     </div>

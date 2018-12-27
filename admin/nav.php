@@ -39,7 +39,7 @@ include 'baseAdmin.html';
         <li class="nav-item active">
           <a class="nav-link" href="listadoEncuesta.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Encuesta</span>
+            <span>Encuestas</span>
           </a>
         </li>
         <li class="nav-item dropdown">

@@ -1,6 +1,13 @@
 <?php
 include 'mainEncuesta.html';
 include 'headerEncuesta.php';
+
+@session_start();
+if (!isset($_SESSION["usuario"] )) {
+	header("Location: login.php");
+	exit();
+}
+
 ?>
 <section>
   	<div class="row">

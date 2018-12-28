@@ -1,0 +1,26 @@
+
+#bienvenida{
+	display: block;
+    text-align: center;
+	width: 100%;
+	margin-top: 10rem; 
+	/*
+    margin-right: 15%;
+    margin-left: 15%;  
+    margin-bottom: 10%;
+    */
+}
+@media only screen and (orientation: landscape){
+	#bienvenida{
+		  margin:auto;
+		  margin-top: 3rem; 
+	}
+}
+	
+#botonIngresar{
+	display:block;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 10px;
+}

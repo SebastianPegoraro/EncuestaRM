@@ -75,10 +75,10 @@ class Opcion{
 		$conexion = null;
 	}
 	
-	public function opcionesPorPregunta($pregunta){
+	public function opcionesPorPregunta($idPregunta){
 		$conexion = new Connect();
-		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :pregunta');
-		$consulta->bindParam(':pregunta', $pregunta);
+		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :idPregunta');
+		$consulta->bindParam(':idPregunta', $idPregunta);
 		$consulta->execute();
 		$registro = $consulta->fetchAll();
         return $registro;

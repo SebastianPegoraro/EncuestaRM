@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.masterHead {
+    background: linear-gradient(-90deg, #003F58, #0089CB);
+}
+
+.titleHead {
+    color: #fff;
+    /*font-size: 13px;*/
+    margin: 12px;
+}
+
+.fullscreen {
+    min-height: 100%; 
+}

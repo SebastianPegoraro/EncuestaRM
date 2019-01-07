@@ -55,5 +55,18 @@ class Eleccion{
             return false;
         }
 	}
+
+	public function buscarPorDescripcion($descripcion){
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT id FROM '.self::TABLA.' WHERE descripcion = :descripcion');
+		$consulta->bindParam(':descripcion', $descripcion);
+		$consulta->execute();
+		$registro = $consulta->fetch();
+		if ($registro) {
+            return new self($descripcion, $registro['id']);
+        } else {
+            return false;
+        }
+	}
     
 }

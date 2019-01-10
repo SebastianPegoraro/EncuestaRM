@@ -87,12 +87,12 @@ class Opcion{
 	public function cantOpcionesCheckbox($pregunta, $tipo){
 		$total = 0;
 		$conexion = new Connect();
-		$consulta = $conexion->prepare('SELECT COUNT(*) FROM '.self::TABLA.' WHERE pregunta_id = :preguntaId AND tipo_id = :tipoId');
+		$consulta = $conexion->prepare('SELECT COUNT(*) FROM '.self::TABLA.' WHERE pregunta_id = :preguntaId AND tipo_id = :tipoId AND estado IS null');
 		$consulta->bindParam(':preguntaId', $pregunta);
 		$consulta->bindParam(':tipoId', $tipo);
 		$consulta->execute();
 		$total = $consulta->fetch();
-		return $total;
+		return $total[0];
 	}
     
 }

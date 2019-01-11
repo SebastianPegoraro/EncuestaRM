@@ -1,3 +1,15 @@
+/*body#LoginForm{
+  background-image:url("../images/marcaciudad.jpg");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  padding:10px;
+}
+*/
+
+.login{
+  margin-top:5%;
+}
 #formLogin{
   display: block;
   text-align: center;

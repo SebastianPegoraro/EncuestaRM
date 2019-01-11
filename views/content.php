@@ -88,4 +88,3 @@ $cont = 0;
 </section>
 
 <script src="../js/slidePreguntas.js"></script>
-<script src="../js/bodyEncuesta.js"></script>

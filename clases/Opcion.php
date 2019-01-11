@@ -8,7 +8,7 @@ class Opcion{
     private $estado;
     private $pregunta;
     const TABLA = 'opciones';
-    
+
     public function getId(){
 		return $this->id;
 	}
@@ -44,7 +44,7 @@ class Opcion{
 	public function setPregunta($pregunta){
 		$this->pregunta = $pregunta;
 	}
-	
+
 	public function __construct($eleccion, $tipo, $pregunta, $estado=null, $id=null){
 		$this->eleccion = $eleccion;
 		$this->tipo = $tipo;
@@ -74,7 +74,7 @@ class Opcion{
 		}
 		$conexion = null;
 	}
-	
+
 	public function opcionesPorPregunta($idPregunta){
 		$conexion = new Connect();
 		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :idPregunta');
@@ -83,5 +83,5 @@ class Opcion{
 		$registro = $consulta->fetchAll();
         return $registro;
 	}
-    
+
 }

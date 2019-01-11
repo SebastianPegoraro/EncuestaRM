@@ -5,7 +5,7 @@ class Eleccion{
     private $id;
     private $descripcion;
     const TABLA = 'elecciones';
-    
+
     public function getId(){
 		return $this->id;
 	}
@@ -26,7 +26,7 @@ class Eleccion{
 		$this->descripcion = $descripcion;
 		$this->id = $id;
 	}
-	
+
 	public function guardarEleccion(){
 		$conexion = new Connect();
 		if($this->id){
@@ -55,5 +55,5 @@ class Eleccion{
             return false;
         }
 	}
-    
+
 }

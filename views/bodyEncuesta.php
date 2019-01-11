@@ -37,10 +37,10 @@ include 'headerEncuesta.php';
 
 								</div>
 			  				</div>
-						</div>	
-			  		</form>	  		
+						</div>
+			  		</form>
 	  			</div>
-	  		</div>	
+	  		</div>
 		</div>
 		<div class="row">
 			 <div class="col text-center">

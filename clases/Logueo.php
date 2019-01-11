@@ -11,7 +11,7 @@ class Login{
 	
 		public function obtenerUsuario($nombre, $clave){
 			$db= new Connect();
-			$select= $db->prepare('SELECT * FROM usuarios WHERE Nombre = :nombre AND Password = :clave');
+			$select= $db->prepare('SELECT * FROM usuarios WHERE nombre = :nombre AND pass = :clave');
 			$select->bindValue(':nombre',$nombre);
 			$select->bindValue(':clave',$clave);
 			$select->execute();

@@ -15,11 +15,11 @@ footer{
 }
 
 #encuestaOpcion{
-		display:inline-block;
-	}
+	display:inline-block;
+}
 #encuesta{
-		margin-top: 10px;
-	}
+	margin-top: 10px;
+}
 
 #footerInfoEncuesta{
 	background-color:#f1f1f1;
@@ -29,9 +29,17 @@ footer{
 	font-size:12px;
 }
 #btn-siguiente{
-	position: absolute;
-	text-align: center; 
-	margin-left: 15%;
-	margin-right: 0%;
+	position: block;
+	text-align: center;
 	margin-top: 10%;
+}
+#btn-inicial{
+	/*position: fixed; */
+	text-align: center;
+
+	margin-top: 70%;
+	margin-bottom: 50%;
+
+	width: 10rem;
+	height: 6rem;
 }

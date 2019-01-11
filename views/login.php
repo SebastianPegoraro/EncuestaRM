@@ -1,6 +1,6 @@
 <?php
   include 'mainEncuesta.html';
-  //require_once '../clases/Logueo.php'; 
+  //require_once '../clases/Logueo.php';
   session_start();
   unset($_SESSION['usuario']);
 ?>
@@ -13,7 +13,7 @@
                 <form id="formLogin" method="post" action="../clases/Controller_login.php">
                   <div class="form-group">
                     <label id="labelUser">Usuario:</label>
-                    <input id="user" type="" class="form-control inputlg" name="usuario" placeholder="Ingrese usuario" type="text" pattern="[A-Za-z_-]{1,10}">
+                    <input id="user" type="" class="form-control inputlg" name="usuario" placeholder="Ingrese usuario" type="text" pattern="[A-Za-z_-]{1,10}" required>
                   </div>
                   <div class="form-group">
                     <label>Contraseña:</label>
@@ -25,7 +25,7 @@
                       <label class="custom-control-label" for="recordarCuenta">Recordar cuenta</label>
                     </div>
                   </div>
-                  <button id="btnIngresar" type="submit" name="ingresar" class="btn btn-primary disabled" style="background:blackº">Ingresar</button>
+                  <button id="btnIngresar" type="submit" name="ingresar" class="btn btn-primary disabled" style="background:black;">Ingresar</button>
                 </form>
           </div>
         </div>

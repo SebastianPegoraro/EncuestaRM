@@ -88,3 +88,9 @@ $cont = 0;
 </section>
 
 <script src="../js/slidePreguntas.js"></script>
+<script type="text/javascript">
+$('#btn-inicial').click(function(){
+  $('#form-encuesta').show();
+  $('#btn-inicial').hide();
+});
+</script>>

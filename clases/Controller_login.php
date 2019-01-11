@@ -15,6 +15,7 @@
 		if ($usuario->getId() != NULL) {
 			$_SESSION['usuario'] = $usuario; //si el usuario se encuentra, crea la sesión de usuario
 
+
 			if ($usuario->getTipo() == 'administrador') {
 				header('Location: ../admin/listadoEncuesta.php');
 			}else{

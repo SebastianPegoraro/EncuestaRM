@@ -68,7 +68,7 @@ class Eleccion{
 
 	public function buscarIdParaText($idPregunta, $idTipo){
 		$conexion = new Connect();
-		$consulta = $conexion->prepare('SELECT * FROM elecciones INNER JOIN opciones ON elecciones.id = opciones.eleccion_id WHERE opciones.tipo_id = :idTipo AND opciones.pregunta_id = :idPregunta AND estado IS null');
+		$consulta = $conexion->prepare('SELECT elecciones.* FROM elecciones INNER JOIN opciones ON elecciones.id = opciones.eleccion_id WHERE opciones.tipo_id = :idTipo AND opciones.pregunta_id = :idPregunta AND estado IS null');
 		$consulta->bindParam(':idPregunta', $idPregunta);
 		$consulta->bindParam(':idTipo', $idTipo);
 		$consulta->execute();

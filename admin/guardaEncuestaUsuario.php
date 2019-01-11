@@ -34,5 +34,7 @@ if(isset($_POST['guardar'])){
             }
         }
     }
+
+    header('Location: ../views/content.php?save');
 }
 ?>

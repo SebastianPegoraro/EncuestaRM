@@ -14,6 +14,19 @@ $cont = 0;
 
 <section>
     <div class="container">
+
+        <?php if(isset($_REQUEST['save'])){
+            ?>
+            <div class="row">
+                <div class="col text-center">
+                    <div class="alert alert-success" role="alert">
+                        La encuesta se guardo Correctamente! :D
+                    </div>
+                </div>
+            </div>
+            <?php
+        } ?>
+
         <form action="../admin/guardaEncuestaUsuario.php" method="post">
 
             <?php foreach($listaPreguntas as $pregunta){ //recorre la lista de preguntas para poder pintarlas

@@ -19,7 +19,7 @@ $cont = 0;
         <div class="row justify-content-between align-items-center">
             <div class="col-xs-3 column"></div>
             <div class="col-xs-4 column">
-                <button id="btn-inicial" class="btn btn-primary bt-block">Empezar</button>
+                <button id="btn-inicial" class="btn btn-primary bt-block" >Empezar</button>
             </div>
             <div class="col-xs-3 column"></div>
         </div>
@@ -47,17 +47,21 @@ $cont = 0;
                                     <div class="form-group col text-center">
                                         <?php if($tipo->getClase() == 'radio'){
                                             ?>
-                                            <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
+                                            <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
                                             <label><?php echo $eleccion->getDescripcion() ?></label>
                                             <?php
                                         } else if ($tipo->getClase() == 'checkbox') {
                                             ?>
-                                            <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
-                                            <label><?php echo $eleccion->getDescripcion() ?></label>
+                                            <div class = "col-2 col-sm-2 text-left">
+                                              <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
+                                            </div>
+                                            <div class="col-12 col-sm-6 text-left" style="padding-left:50px;">
+                                              <label><?php echo $eleccion->getDescripcion() ?></label>
+                                            </div>
                                             <?php
                                         } else if ($tipo->getClase() == 'text') {
                                             ?>
-                                            <input class="form-control" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>">
+                                            <input class="form-control" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>" required>
                                             <?php
                                         }
                                         ?>
@@ -69,7 +73,8 @@ $cont = 0;
                     } ?>
 
                     <div class="col-12 text-center">
-                        <button type="button" class="btn btn-primary" onclick="siguientePregunta('<?php echo $cont ?>')">Siguiente <i class="fas fa-arrow-right"></i></button>
+                      <button type="button" id="btn-anterior" class="btn btn-primary" onclick="siguientePregunta('<?php echo ($cont-1)  ?>')" style="display:none">Anterior <i class="fas fa-arrow-left"></i></button>
+                      <button type="button" id="btn-siguiente" class="btn btn-primary" onclick="siguientePregunta('<?php echo $cont ?>')">Siguiente <i class="fas fa-arrow-right"></i></button>
                     </div>
 
                 </div>
@@ -89,8 +94,13 @@ $cont = 0;
 
 <script src="../js/slidePreguntas.js"></script>
 <script type="text/javascript">
-$('#btn-inicial').click(function(){
-  $('#form-encuesta').show();
-  $('#btn-inicial').hide();
-});
-</script>>
+  $('#btn-siguiente').click(function(){
+    if ( $('#btn-anterior').display == 'none' ) {
+      $('#btn-anterior').show();
+    }
+  });
+  $('#btn-inicial').click(function(){
+    $('#form-encuesta').show();
+    $('#btn-inicial').hide();
+  });
+</script>

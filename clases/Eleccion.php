@@ -5,7 +5,7 @@ class Eleccion{
     private $id;
     private $descripcion;
     const TABLA = 'elecciones';
-    
+
     public function getId(){
 		return $this->id;
 	}
@@ -26,7 +26,7 @@ class Eleccion{
 		$this->descripcion = $descripcion;
 		$this->id = $id;
 	}
-	
+
 	public function guardarEleccion(){
 		$conexion = new Connect();
 		if($this->id){
@@ -56,6 +56,7 @@ class Eleccion{
         }
 	}
 
+<<<<<<< HEAD
 	public function buscarPorDescripcion($descripcion, $idOpcion){
 		$conexion = new Connect();
 		$consulta = $conexion->prepare('SELECT elecciones.id FROM elecciones INNER JOIN opciones ON elecciones.id = opciones.eleccion_id WHERE elecciones.descripcion = :descripcion AND opciones.id = :idOpcion');
@@ -80,4 +81,6 @@ class Eleccion{
         }
 	}
     
+=======
+>>>>>>> 3209abfd37af45b74f1427dc044f7e181c7d5795
 }

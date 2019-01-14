@@ -29,6 +29,14 @@ class Usuario{
 	public function setPassword($password){
 		$this->password = $password;
     }
-    
-    
+
+    public function getTipo(){
+    	return $this->tipo;
+    }
+
+    public function setTipo($tipo){
+    	$this->tipo = $tipo;
+    }
+
+
 }

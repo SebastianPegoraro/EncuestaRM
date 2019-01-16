@@ -36,7 +36,7 @@ $cont = 0;
             <div class="col-xs-3 column"></div>
         </div>
 
-        <form action="../admin/guardaEncuestaUsuario.php" method="post">
+        <form id="form-encuesta" action="../admin/guardaEncuestaUsuario.php" method="post">
 
             <?php foreach($listaPreguntas as $pregunta){ //recorre la lista de preguntas para poder pintarlas
                 $cont++;

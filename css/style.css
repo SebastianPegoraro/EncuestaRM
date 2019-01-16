@@ -26,3 +26,7 @@ html, body {
 .fullscreen {
     min-height: 100%;
 }
+
+#form-encuesta{ /* Css para ocultar la encuesta previo al boton Empezar*/
+    display: none;
+}

@@ -54,30 +54,26 @@ $cont = 0;
                         $contOpcion++
                         ?>
                         <div class="col-12 text-center">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="form-group col text-center">
-                                        <?php if($tipo->getClase() == 'radio'){
-                                            ?>
-                                            <input id="radio" class="form-check-input radios" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
-                                            <label style="padding-left:20px;"><?php echo $eleccion->getDescripcion() ?></label>
-                                            <?php
-                                        } else if ($tipo->getClase() == 'checkbox') {
-                                            ?>
-                                            <div class = "col-3 col-sm-3 text-left">
-                                              <input id="checkbox" class="form-check-input checks" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
-                                            </div>
-                                            <div class="col-12 col-sm-6 text-left" style="padding-left:40px;">
-                                              <label><?php echo $eleccion->getDescripcion() ?></label>
-                                            </div>
-                                            <?php
-                                        } else if ($tipo->getClase() == 'text') {
-                                            ?>
-                                            <input id="campoText" class="form-control texts" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>" required>
-                                            <?php
-                                        }
+                            <div class="row">
+                                <div class="form-group col text-center">
+                                    <?php if($tipo->getClase() == 'radio'){
                                         ?>
-                                    </div>
+                                        <input class="form-check-input radios" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
+                                        <label style="padding-left:20px;"><?php echo $eleccion->getDescripcion() ?></label>
+                                        <?php
+                                    } else if ($tipo->getClase() == 'checkbox') {
+                                        ?>
+                                        <div class="col-8 offset-2 text-left">
+                                            <input class="form-check-input checks" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
+                                            <label style="padding-left:40px;"><?php echo $eleccion->getDescripcion() ?></label>
+                                        </div>
+                                        <?php
+                                    } else if ($tipo->getClase() == 'text') {
+                                        ?>
+                                        <input class="form-control" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>" required>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
 

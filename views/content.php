@@ -31,7 +31,7 @@ $cont = 0;
         <div class="row justify-content-between align-items-center">
             <div class="col-xs-3 column"></div>
             <div class="col-xs-4 column">
-                <button id="btn-inicial" class="btn btn-primary bt-block" >Empezar</button>
+                <button id="btn-inicial" class="btn btn-primary bt-block" >Comenzar</button>
             </div>
             <div class="col-xs-3 column"></div>
         </div>
@@ -59,34 +59,35 @@ $cont = 0;
                                     <div class="form-group col text-center">
                                         <?php if($tipo->getClase() == 'radio'){
                                             ?>
-                                            <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
-                                            <label><?php echo $eleccion->getDescripcion() ?></label>
+                                            <input id="radio" class="form-check-input radios" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' value='<?php echo $eleccion->getDescripcion() ?>' required>
+                                            <label style="padding-left:20px;"><?php echo $eleccion->getDescripcion() ?></label>
                                             <?php
                                         } else if ($tipo->getClase() == 'checkbox') {
                                             ?>
-                                            <div class = "col-2 col-sm-2 text-left">
-                                              <input class="form-check-input" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
+                                            <div class = "col-3 col-sm-3 text-left">
+                                              <input id="checkbox" class="form-check-input checks" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?><?php echo $contOpcion ?>' value='<?php echo $eleccion->getDescripcion() ?>'>
                                             </div>
-                                            <div class="col-12 col-sm-6 text-left" style="padding-left:50px;">
+                                            <div class="col-12 col-sm-6 text-left" style="padding-left:40px;">
                                               <label><?php echo $eleccion->getDescripcion() ?></label>
                                             </div>
                                             <?php
                                         } else if ($tipo->getClase() == 'text') {
                                             ?>
-                                            <input class="form-control" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>" required>
+                                            <input id="campoText" class="form-control texts" type='<?php echo $tipo->getClase() ?>' name='opcion<?php echo $cont ?>' placeholder="<?php echo $eleccion->getDescripcion() ?>" required>
                                             <?php
                                         }
                                         ?>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <?php
                     } ?>
 
                     <div class="col-12 text-center">
-                      <button type="button" id="btn-anterior" class="btn btn-primary" onclick="siguientePregunta('<?php echo ($cont-1)  ?>')" style="display:none">Anterior <i class="fas fa-arrow-left"></i></button>
-                      <button type="button" id="btn-siguiente" class="btn btn-primary" onclick="siguientePregunta('<?php echo $cont ?>')">Siguiente <i class="fas fa-arrow-right"></i></button>
+                      <button type="button" id="btn-anterior" class="btn btn-primary" style="display:none" onclick="anteriorPregunta('<?php echo $cont  ?>')">Anterior <i class="fas fa-arrow-left"></i></button>
+                      <button type="button" id="btn-siguiente" class="btn btn-primary" onclick="siguientePregunta('<?php echo $cont ?>')" data-toggle="tooltip" data-placement="bottom">Siguiente <i class="fas fa-arrow-right"></i></button>
                     </div>
 
                 </div>
@@ -96,7 +97,7 @@ $cont = 0;
             <div class="row" id="pregunta<?php echo ++$cont ?>" hidden>
                 <div class="col-12 text-center">
                     <input type='text' value='<?php echo 4 ?>' name="encuesta" hidden>
-                    <input type='submit' value='Terminar Encuesta!' class='btn btn-success' name="guardar">
+                    <input id="btn-final" type='submit' value='Terminar Encuesta!' class='btn btn-success' name="guardar">
                 </div>
             </div>
 
@@ -106,13 +107,17 @@ $cont = 0;
 
 <script src="../js/slidePreguntas.js"></script>
 <script type="text/javascript">
+/*
+$('#btn-anterior').hide();
   $('#btn-siguiente').click(function(){
-    if ( $('#btn-anterior').display == 'none' ) {
+    if ( $('#btn-anterior').display == 'none' ) { //Muestra el boton empezar
       $('#btn-anterior').show();
     }
-  });
+  });*/
   $('#btn-inicial').click(function(){
     $('#form-encuesta').show();
     $('#btn-inicial').hide();
   });
+
+
 </script>

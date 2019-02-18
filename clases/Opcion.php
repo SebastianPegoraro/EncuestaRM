@@ -77,11 +77,22 @@ class Opcion{
 	
 	public function opcionesPorPregunta($idPregunta){
 		$conexion = new Connect();
-		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :idPregunta');
+		$consulta = $conexion->prepare('SELECT id, eleccion_id, tipo_id, estado FROM '.self::TABLA.' WHERE pregunta_id = :idPregunta AND estado IS NULL');
 		$consulta->bindParam(':idPregunta', $idPregunta);
 		$consulta->execute();
 		$registro = $consulta->fetchAll();
         return $registro;
+	}
+
+	public function cantOpcionesCheckbox($pregunta, $tipo){
+		$total = 0;
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT COUNT(*) FROM '.self::TABLA.' WHERE pregunta_id = :preguntaId AND tipo_id = :tipoId AND estado IS null');
+		$consulta->bindParam(':preguntaId', $pregunta);
+		$consulta->bindParam(':tipoId', $tipo);
+		$consulta->execute();
+		$total = $consulta->fetch();
+		return $total[0];
 	}
     
 }

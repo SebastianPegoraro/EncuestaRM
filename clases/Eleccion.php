@@ -5,7 +5,7 @@ class Eleccion{
     private $id;
     private $descripcion;
     const TABLA = 'elecciones';
-    
+
     public function getId(){
 		return $this->id;
 	}
@@ -26,7 +26,7 @@ class Eleccion{
 		$this->descripcion = $descripcion;
 		$this->id = $id;
 	}
-	
+
 	public function guardarEleccion(){
 		$conexion = new Connect();
 		if($this->id){
@@ -51,6 +51,30 @@ class Eleccion{
         $registro = $consulta->fetch();
         if ($registro) {
             return new self($registro['descripcion'], $id);
+        } else {
+            return false;
+        }
+	}
+
+	public function buscarPorDescripcion($descripcion, $idOpcion){
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT elecciones.id FROM elecciones INNER JOIN opciones ON elecciones.id = opciones.eleccion_id WHERE elecciones.descripcion = :descripcion AND opciones.id = :idOpcion');
+		$consulta->bindParam(':descripcion', $descripcion);
+		$consulta->bindParam(':idOpcion', $idOpcion);
+		$consulta->execute();
+		$registro = $consulta->fetch();
+		return $registro[0];
+	}
+
+	public function buscarIdParaText($idPregunta, $idTipo){
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT elecciones.* FROM elecciones INNER JOIN opciones ON elecciones.id = opciones.eleccion_id WHERE opciones.tipo_id = :idTipo AND opciones.pregunta_id = :idPregunta AND estado IS null');
+		$consulta->bindParam(':idPregunta', $idPregunta);
+		$consulta->bindParam(':idTipo', $idTipo);
+		$consulta->execute();
+		$registro = $consulta->fetch();
+		if ($registro) {
+            return new self($registro['descripcion'], $registro['id']);
         } else {
             return false;
         }

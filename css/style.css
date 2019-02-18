@@ -1,3 +1,19 @@
+#btn-inicial{
+  /*position: fixed; */
+  text-align: center;
+
+  margin-top: 100%;
+  margin-bottom: 50%;
+
+  width: 10rem;
+  height: 6rem;
+}
+#btn-final{
+  margin-top: 50%;
+  margin-bottom: 50%;
+  width: 10rem;
+  height: 6rem;
+}
 html, body {
     height: 100%;
     margin: 0;
@@ -14,5 +30,22 @@ html, body {
 }
 
 .fullscreen {
-    min-height: 100%; 
+    min-height: 100%;
+}
+
+#form-encuesta{ /* Css para ocultar la encuesta previo al boton Empezar*/
+    display: none;
+}
+
+label {
+   text-indent: -15px;
+   vertical-align: middle;
+   padding-top: 5px;
+}
+.radios {
+  width:20px; height:20px;
+}
+
+.checks {
+  width:20px; height:30px;
 }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-12-2018 a las 13:09:17
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 7.2.7
+-- Tiempo de generación: 12-02-2019 a las 18:23:23
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `encuestarm`
+-- Base de datos: `encuesta_municipal`
 --
 
 -- --------------------------------------------------------
@@ -32,43 +32,6 @@ CREATE TABLE `elecciones` (
   `id` int(11) NOT NULL,
   `descripcion` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `elecciones`:
---
-
---
--- Volcado de datos para la tabla `elecciones`
---
-
-INSERT INTO `elecciones` (`id`, `descripcion`) VALUES
-(1, 'Masculino'),
-(2, 'Femenino'),
-(3, 'Si, por favor'),
-(4, 'Masculino'),
-(5, 'Femenino'),
-(6, 'Si, por favor'),
-(7, 'Masculino'),
-(8, 'Masculino'),
-(9, 'Masculino'),
-(10, 'Masculino'),
-(11, 'Masculino'),
-(12, 'Masculino'),
-(13, 'Femenino'),
-(14, 'Si, por favor'),
-(15, 'Masculino'),
-(16, 'Femenino'),
-(17, 'Si, por favor'),
-(18, 'Bleach'),
-(19, 'Fullmetal Alchemist'),
-(20, 'Shingeki no Kioshin'),
-(21, 'HunterXHunter'),
-(22, 'Femenino'),
-(23, 'Masculino'),
-(24, 'a'),
-(25, 'a'),
-(26, 'Femenino'),
-(27, 'Masculino');
 
 -- --------------------------------------------------------
 
@@ -84,18 +47,16 @@ CREATE TABLE `encuestas` (
   `fecha_creacion` varchar(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `encuestas`:
---
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `encuestas`
+-- Estructura de tabla para la tabla `encuesta_x_usuario`
 --
 
-INSERT INTO `encuestas` (`id`, `titulo`, `fecha_inicio`, `fecha_cierre`, `fecha_creacion`) VALUES
-(1, 'Cerveza', '18-12-2018', '15-02-2019', '17/12/2018'),
-(2, 'CumpleaÃ±os', '26-12-2018', '31-12-2018', '21/12/2018'),
-(3, 'Bienal', '02-12-2018', '14-08-2019', '21/12/2018');
+CREATE TABLE `encuesta_x_usuario` (
+  `encuesta_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -107,43 +68,8 @@ CREATE TABLE `opciones` (
   `id` int(11) NOT NULL,
   `eleccion_id` int(11) NOT NULL,
   `tipo_id` int(11) NOT NULL,
-  `pregunta_id` int(11) NOT NULL,
-  `estado` int(11) DEFAULT NULL
+  `pregunta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- RELACIONES PARA LA TABLA `opciones`:
---   `tipo_id`
---       `tipos` -> `id`
---   `eleccion_id`
---       `elecciones` -> `id`
---   `pregunta_id`
---       `preguntas` -> `id`
---
-
---
--- Volcado de datos para la tabla `opciones`
---
-
-INSERT INTO `opciones` (`id`, `eleccion_id`, `tipo_id`, `pregunta_id`, `estado`) VALUES
-(1, 7, 3, 4, NULL),
-(2, 11, 3, 8, NULL),
-(3, 12, 3, 9, NULL),
-(4, 13, 3, 9, NULL),
-(5, 14, 3, 9, NULL),
-(6, 15, 3, 10, NULL),
-(7, 16, 3, 10, NULL),
-(8, 17, 3, 10, NULL),
-(9, 18, 1, 11, NULL),
-(10, 19, 1, 11, NULL),
-(11, 20, 1, 11, NULL),
-(12, 21, 1, 11, NULL),
-(13, 22, 3, 12, NULL),
-(14, 23, 3, 12, NULL),
-(15, 24, 4, 13, NULL),
-(16, 25, 4, 14, NULL),
-(17, 26, 1, 15, NULL),
-(18, 27, 1, 15, NULL);
 
 -- --------------------------------------------------------
 
@@ -157,26 +83,17 @@ CREATE TABLE `preguntas` (
   `encuesta_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `preguntas`:
---   `encuesta_id`
---       `encuestas` -> `id`
---
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `preguntas`
+-- Estructura de tabla para la tabla `respuestas`
 --
 
-INSERT INTO `preguntas` (`id`, `descripcion`, `encuesta_id`) VALUES
-(4, 'Sexo?', 1),
-(8, 'Sexo?', 1),
-(9, 'Sexo?', 1),
-(10, 'Sexo?', 1),
-(11, 'Anime?', 1),
-(12, 'Sexo?', 2),
-(13, 'Edad', 2),
-(14, 'Feeling Good?', 2),
-(15, 'Sexo?', 3);
+CREATE TABLE `respuestas` (
+  `id` int(11) NOT NULL,
+  `opcion_id` int(11) NOT NULL,
+  `estado` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -189,18 +106,18 @@ CREATE TABLE `tipos` (
   `clase` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- RELACIONES PARA LA TABLA `tipos`:
---
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `tipos`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-INSERT INTO `tipos` (`id`, `clase`) VALUES
-(1, 'radio'),
-(3, 'checkbox'),
-(4, 'text');
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `tipo` varchar(30) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Índices para tablas volcadas
@@ -219,6 +136,13 @@ ALTER TABLE `encuestas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `encuesta_x_usuario`
+--
+ALTER TABLE `encuesta_x_usuario`
+  ADD KEY `encuesta_id` (`encuesta_id`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Indices de la tabla `opciones`
 --
 ALTER TABLE `opciones`
@@ -235,9 +159,22 @@ ALTER TABLE `preguntas`
   ADD KEY `encuesta_id` (`encuesta_id`);
 
 --
+-- Indices de la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `opcion_id` (`opcion_id`);
+
+--
 -- Indices de la tabla `tipos`
 --
 ALTER TABLE `tipos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -248,35 +185,54 @@ ALTER TABLE `tipos`
 -- AUTO_INCREMENT de la tabla `elecciones`
 --
 ALTER TABLE `elecciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `encuestas`
 --
 ALTER TABLE `encuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `opciones`
 --
 ALTER TABLE `opciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos`
 --
 ALTER TABLE `tipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `encuesta_x_usuario`
+--
+ALTER TABLE `encuesta_x_usuario`
+  ADD CONSTRAINT `encuesta_x_usuario_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `encuesta_x_usuario_ibfk_2` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id`);
 
 --
 -- Filtros para la tabla `opciones`
@@ -291,6 +247,12 @@ ALTER TABLE `opciones`
 --
 ALTER TABLE `preguntas`
   ADD CONSTRAINT `preguntas_ibfk_1` FOREIGN KEY (`encuesta_id`) REFERENCES `encuestas` (`id`);
+
+--
+-- Filtros para la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`opcion_id`) REFERENCES `opciones` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,9 +2,9 @@
  class Connect extends PDO { 
    private $tipo_de_base = 'mysql';
    private $host = 'localhost';
-   private $nombre_de_base = 'c2mrappencuesta';
-   private $usuario = 'c2mrappencuesta';
-   private $contrasena = 'mg7KLmec#FR'; 
+   private $nombre_de_base = 'encuesta_municipal';
+   private $usuario = 'root';
+   private $contrasena = ''; 
    
    public function __construct() {
       //Sobreescribo el método constructor de la clase PDO.

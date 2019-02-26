@@ -6,9 +6,8 @@ require_once '../clases/Pregunta.php';
 require_once '../clases/Opcion.php';
 require_once '../clases/Tipo.php';
 require_once '../clases/Eleccion.php';
-require_once '../clases/Controller_seguridad.php';
 
-$listaPreguntas = Pregunta::preguntasPorEncuesta(4);
+$listaPreguntas = Pregunta::preguntasPorEncuesta(5);
 //die(var_dump($preguntas));
 $cont = 0;
 ?>

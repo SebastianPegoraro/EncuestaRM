@@ -11,7 +11,4 @@ global $dbh;
  }
  // Execute the query
  $resultat = $dbh->query($query) or die(print_r($dbh->errorInfo()));
-
-
-
 ?>

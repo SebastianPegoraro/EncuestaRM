@@ -97,4 +97,12 @@ class Encuesta{
         }
 	}
 
+	public function eliminar($id)
+	{
+		$conexion = new Connect();
+        $consulta = $conexion->prepare('DELETE FROM '.self::TABLA.' WHERE id = :id');
+		$consulta->bindParam(':id', $id);
+        $consulta->execute();
+	}
+
 }

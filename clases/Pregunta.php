@@ -73,4 +73,20 @@ class Pregunta{
 		$registro = $consulta->fetchAll();
         return $registro;
 	}
+
+	public function eliminar($encuestaId)
+	{
+		$conexion = new Connect();
+        $consulta = $conexion->prepare('DELETE FROM '.self::TABLA.' WHERE encuesta_id = :encuestaId');
+		$consulta->bindParam(':encuestaId', $encuestaId);
+        $consulta->execute();
+	}
+
+	public function eliminarPregunta($id)
+	{
+		$conexion = new Connect();
+        $consulta = $conexion->prepare('DELETE FROM '.self::TABLA.' WHERE id = :id');
+		$consulta->bindParam(':id', $id);
+        $consulta->execute();
+	}
 }

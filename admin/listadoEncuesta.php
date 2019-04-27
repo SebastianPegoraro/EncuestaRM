@@ -6,6 +6,15 @@ $totalEncuestas = Encuesta::showEncuestas();
 ?>
 
     <div class="container page-content-wrapper">
+        <?php if (isset($_REQUEST['eliminado'])) {  ?>
+            <div class="row">
+                <div class="col alert alert-success" role="alert">
+                    Se elimino correctamente la Encuesta
+                </div>
+            </div>
+        <?php
+        }
+        ?>
         <div class="row">
             <?php if($totalEncuestas){ ?> <!-- Si hay al menos una encuesta, la lista. Sino muestra una alerta -->
             <div class="card col">
@@ -18,7 +27,7 @@ $totalEncuestas = Encuesta::showEncuestas();
                                     <th> Fecha Inicio </th>
                                     <th> Fecha Cierre </th>
                                     <th> Fecha Creación </th>
-                                    <th> Ver </th>
+                                    <th> Acciones </th>
                                 </tr>
                             </thead>
                             <?php
@@ -30,7 +39,11 @@ $totalEncuestas = Encuesta::showEncuestas();
                                         <td><?php echo $contenido['fecha_inicio'] ?></td>
                                         <td><?php echo $contenido['fecha_cierre'] ?></td>
                                         <td><?php echo $contenido['fecha_creacion'] ?></td>
-                                        <td><a href="verEncuesta.php?encuesta=<?php echo $contenido['id'] ?>" class="btn btn-outline-primary"><i class="far fa-eye"></i></a></td>
+                                        <td>
+                                            <a href="verEncuesta.php?encuesta=<?php echo $contenido['id'] ?>" class="btn btn-outline-info"><i class="far fa-eye"></i> Ver</a>
+                                            <a href="nuevaEncuesta.php?encuesta=<?php echo $contenido['id'] ?>&editar" class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i> Editar</a>
+                                            <a href="eliminar.php?encuesta=<?php echo $contenido['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-times"></i> Eliminar</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <?php

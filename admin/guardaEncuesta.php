@@ -7,9 +7,15 @@ if(isset($_POST['guardar'])){
     $fechaCierre = $_POST['fin'];
     $fechaCreacion = $_POST['creacion'];
 
-    $encuesta = new Encuesta($titulo, $fechaInicio, $fechaCierre, $fechaCreacion);
-    $encuesta->guardarEncuesta();
-    $encuestaId = $encuesta->getId();
+    if (isset($_POST['editar'])) {
+        $encuesta = new Encuesta($titulo, $fechaInicio, $fechaCierre, $fechaCreacion, $_POST['encuesta']);
+        $encuesta->guardarEncuesta();
+        $encuestaId = $encuesta->getId();
+    } else {
+        $encuesta = new Encuesta($titulo, $fechaInicio, $fechaCierre, $fechaCreacion);
+        $encuesta->guardarEncuesta();
+        $encuestaId = $encuesta->getId();
+    }
 
     header('Location: ./generadorPreguntas.php?encuesta='.$encuestaId);
 }

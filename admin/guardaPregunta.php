@@ -26,5 +26,5 @@ if (isset($_POST['guardar'])) {
         $opcion->guardarOpcion();
     }
     
-    header('Location: ./verEncuesta.php?admin&encuesta='.$encuestaId);
+    header('Location: ./verEncuesta.php?encuesta='.$encuestaId);
 }

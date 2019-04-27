@@ -14,6 +14,15 @@ $cont = 0;
 ?>
 
 <div class="container page-content-wrapper">
+    <?php if (isset($_REQUEST['editado'])) {  ?>
+        <div class="row">
+            <div class="col alert alert-success" role="alert">
+                Se Edito correctamente la Encuesta
+            </div>
+        </div>
+    <?php
+    }
+    ?>
     <div class="row">
         <div class="col">
             <div class="card">
@@ -31,61 +40,62 @@ $cont = 0;
                         $cont++;
                         $listaOpciones = Opcion::opcionesPorPregunta($pregunta['id']);                        
                         ?>
-                        <div class="form-group col">
-                            <label><strong><?php echo $cont ?>)- <?php echo $pregunta['descripcion'] ?></strong></label>
-                        </div>
-                        <div class="container">
-                            <div class="row">
+                        <div class="form-group col-12">
+                            <label><strong><?php echo $cont ?>)- <?php echo $pregunta['descripcion'] ?></strong></label> 
+                            <div class="container">
+                                <div class="row">
 
-                            <?php foreach ($listaOpciones as $opcion) { 
-                                $tipo = Tipo::buscarPorId($opcion['tipo_id']);
-                                $eleccion = Eleccion::buscarPorId($opcion['eleccion_id']);
-                                if ($tipo->getClase() == 'radio') {
-                                    ?> 
-                                    <div class="form-group col text-center">
-                                        <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
-                                        <label><?php echo $eleccion->getDescripcion() ?></label>
-                                    </div>
-                                    <?php
-                                } elseif ($tipo->getClase() == 'checkbox') {
-                                    ?> 
-                                    <div class="form-group col text-center">
-                                        <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
-                                        <label><?php echo $eleccion->getDescripcion() ?></label>
-                                    </div>
-                                    <?php
-                                } elseif ($tipo->getClase() == 'text') {
-                                    ?> 
-                                    <div class="form-group col text-center">
-                                        <input class='form-control' type='<?php echo $tipo->getClase() ?>' name='opcion' placeholder="<?php echo $eleccion->getDescripcion() ?>">
-                                    </div>
-                                    <?php
-                                }
-                            } ?>
-                                
+                                <?php foreach ($listaOpciones as $opcion) { 
+                                    $tipo = Tipo::buscarPorId($opcion['tipo_id']);
+                                    $eleccion = Eleccion::buscarPorId($opcion['eleccion_id']);
+                                    if ($tipo->getClase() == 'radio') {
+                                        ?> 
+                                        <div class="form-group col text-center">
+                                            <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
+                                            <label><?php echo $eleccion->getDescripcion() ?></label>
+                                        </div>
+                                        <?php
+                                    } elseif ($tipo->getClase() == 'checkbox') {
+                                        ?> 
+                                        <div class="form-group col text-center">
+                                            <input class='form-check-input' type='<?php echo $tipo->getClase() ?>' name='opcion'>
+                                            <label><?php echo $eleccion->getDescripcion() ?></label>
+                                        </div>
+                                        <?php
+                                    } elseif ($tipo->getClase() == 'text') {
+                                        ?> 
+                                        <div class="form-group col text-center">
+                                            <input class='form-control' type='<?php echo $tipo->getClase() ?>' name='opcion' placeholder="<?php echo $eleccion->getDescripcion() ?>">
+                                        </div>
+                                        <?php
+                                    }
+                                } ?>
+                                    
+                                </div>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <button>Editar</button>
+                        </div>
+                        <div class="col-6 text-right">
+                            <a href="eliminar.php?encuesta=<?php echo $encuesta->getId() ?>&pregunta=<?php echo $pregunta['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-times"></i> Eliminar</a>
+                        </div>
+                        <div class="col-12">
+                            <br><br>
+                        </div>
+                        
                         <?php
                     } ?> 
 
                     </div>
                 </div>
-                
-                <?php if(isset($_REQUEST['admin'])){
-                    ?>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <a href="generadorPreguntas.php?encuesta=<?php echo $idEncuesta ?>" class="btn btn-outline-primary">Agregar otra Pregunta</a>
-                            </div>
-                            <div class="col text-right">
-                                <a href="listadoEncuesta.php" class="btn btn-outline-success">Terminar Encuesta</a>
-                            </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <a href="generadorPreguntas.php?encuesta=<?php echo $idEncuesta ?>" class="btn btn-outline-primary">Agregar otra Pregunta</a>
                         </div>
                     </div>
-                    <?php
-                } ?>                
-
+                </div>
             </div>
         </div>
     </div>

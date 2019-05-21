@@ -75,7 +75,7 @@ $cont = 0;
                             </div>
                         </div>
                         <div class="col-6">
-                            <button>Editar</button>
+                            <a href="generadorPreguntas.php?editar&encuesta=<?php echo $encuesta->getId() ?>&pregunta=<?php echo $pregunta['id'] ?>" class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i> Editar</a>
                         </div>
                         <div class="col-6 text-right">
                             <a href="eliminar.php?encuesta=<?php echo $encuesta->getId() ?>&pregunta=<?php echo $pregunta['id'] ?>" class="btn btn-outline-danger"><i class="fas fa-times"></i> Eliminar</a>
@@ -89,13 +89,21 @@ $cont = 0;
 
                     </div>
                 </div>
+
+                <?php if(isset($_REQUEST['admin'])){
+                    ?>
                 <div class="card-footer">
                     <div class="row">
                         <div class="col">
                             <a href="generadorPreguntas.php?encuesta=<?php echo $idEncuesta ?>" class="btn btn-outline-primary">Agregar otra Pregunta</a>
                         </div>
+                        <div class="col text-right">
+                            <a href="listadoEncuesta.php" class="btn btn-outline-success">Terminar Encuesta</a>
+                        </div>
                     </div>
                 </div>
+                <?php
+                } ?>  
             </div>
         </div>
     </div>

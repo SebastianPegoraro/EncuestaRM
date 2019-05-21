@@ -2,8 +2,10 @@
 include 'nav.php';
 require_once '../clases/Encuesta.php';
 
-$idEncuesta = $_REQUEST['encuesta'];
-$encuesta = Encuesta::buscarPorId($idEncuesta);
+if (isset($_REQUEST['editar'])) {
+    $idEncuesta = $_REQUEST['encuesta'];
+    $encuesta = Encuesta::buscarPorId($idEncuesta);
+}
 ?>
 <head>
 <!-- JQueryUI para elegir fecha -->
@@ -18,9 +20,9 @@ $encuesta = Encuesta::buscarPorId($idEncuesta);
                     <div class="row">
                         <div class='form-group col-sm-12 text-center'>
                             <?php if (isset($_REQUEST['editar'])) { ?>
-                                <h1>Nueva Encuesta!</h1>
-                            <?php } else { ?>
                                 <h1>Editar Encuesta!</h1>
+                            <?php } else { ?>
+                                <h1>Nueva Encuesta!</h1>
                             <?php } ?>
                         </div>
                     </div>

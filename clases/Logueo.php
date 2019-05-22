@@ -3,10 +3,8 @@
 //importando datos para conectarse
 require_once 'Connect.php';
 require_once 'Usuario.php';
-/*
 
-*/
-class Login{
+class Logueo{
 	//obtiene el usuario para el login
 
 		public function obtenerUsuario($nombre, $clave){
@@ -20,7 +18,7 @@ class Login{
 			//verifica si la clave es correcta
 			//if (password_verify($clave, $registro['clave'])) {
 				//si es correcta, asigna los valores que trae desde la base de datos
-				$usuario->setId($registro['idUsuario']);
+				$usuario->setId($registro['id']);
 				$usuario->setNombre($registro['nombre']);
 				$usuario->setPassword($registro['password']);
 				$usuario->setTipo($registro['tipo']);

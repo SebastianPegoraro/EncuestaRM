@@ -1,5 +1,6 @@
 <?php
 require_once '../clases/Encuesta.php';
+require_once '../clases/ControllerSeguridad.php';
 include 'nav.php';
 
 $totalEncuestas = Encuesta::showEncuestas();

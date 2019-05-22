@@ -3,7 +3,8 @@
 class Usuario{
     private $id;
     private $nombre;
-    private $password;
+		private $password;
+		private $tipo;
     const TABLA = 'usuarios';
 
     public function getId(){

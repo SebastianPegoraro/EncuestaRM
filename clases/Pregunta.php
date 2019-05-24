@@ -55,6 +55,16 @@ class Pregunta{
 		$conexion = null;
 	}
 
+	public function findPreguntaById($id)
+	{
+		$conexion = new Connect();
+		$consulta = $conexion->prepare('SELECT * FROM '.self::TABLA.' WHERE id = :id');
+		$consulta->bindParam(':id', $id);
+		$consulta->execute();
+		$pregunta = $consulta->fetch();
+		return $pregunta;
+	}
+
 	public function cantPreguntasPorEncuesta($encuesta){
 		$total = 0;
 		$conexion = new Connect();

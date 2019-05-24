@@ -9,14 +9,26 @@ if (isset($_POST['guardar'])) {
     $clase = $_POST['tipo'];//Clase del tipo
     $descripcionEleccion = $_POST['eleccion'];//Descrip de la Eleccion
     $encuestaId = $_POST['encuesta'];
+
     //Guardamos la Pregunta y obtenemos su ID
-    $pregunta = new Pregunta($descripcion, $encuestaId);
+    if (isset($_POST['editar'])) {
+        $listaOpciones = Opcion::opcionesPorPregunta($_REQUEST['pregunta']);
+        //Se eliminan las opciones y al final la pregunta
+        if ($listaOpciones) {
+            foreach ($listaOpciones as $opcion) {
+                Opcion::eliminar($opcion['id']);
+            }
+        }
+        $pregunta = new Pregunta($descripcion, $encuestaId, $id = $_POST['pregunta']);
+    } else {
+        $pregunta = new Pregunta($descripcion, $encuestaId);
+    }    
     $pregunta->guardarPregunta();
     $preguntaId = $pregunta->getId();    
 
-    for ($i=0; $i < count($clase); $i++) {
-        //Se busca el id del tipo de campo seleccionado
-        $tipoId = Tipo::buscarId($clase[$i]);
+    //Se busca el id del tipo de campo seleccionado
+    $tipoId = Tipo::buscarId($clase);
+    for ($i=0; $i < count($descripcionEleccion); $i++) {        
         //Guardamos la Descripcion de la Eleccion
         $eleccion = new Eleccion($descripcionEleccion[$i]);
         $eleccion->guardarEleccion();

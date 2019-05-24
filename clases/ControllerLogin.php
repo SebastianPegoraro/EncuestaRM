@@ -14,7 +14,7 @@
 		// si el id del objeto retornado no es null, quiere decir que encontro un registro en la base
 		if ($usuario->getId() != NULL) {
 			$_SESSION['usuario'] = $usuario; //si el usuario se encuentra, crea la sesión de usuario
-			if ($usuario->getTipo() == 'administrador') {
+			if ($usuario->getTipo() == 'Administrador') {
 				header('Location: ../admin/listadoEncuesta.php');
 			}
 			//header('Location: ../views/bodyEncuesta.php'); //direcciona a la encuesta
